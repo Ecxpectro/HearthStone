@@ -13,15 +13,17 @@ namespace HearthStoneApp.WorkerService
         private readonly IRarityService _rarityService;
         private readonly IArtistService _artistService;
         private readonly IPlayerClassService _playerClassService;
+        private readonly ICardSetService _cardSetService;
         private readonly ILogger<CardSyncJob> _logger;
 
-        public CardSyncJob(IHearthStoneApiService apiService, ICardService cardService, IRarityService rarityService, IArtistService artistService, IPlayerClassService playerClassService, ILogger<CardSyncJob> logger)
+        public CardSyncJob(IHearthStoneApiService apiService, ICardService cardService, IRarityService rarityService, IArtistService artistService, IPlayerClassService playerClassService, ICardSetService cardSetService, ILogger<CardSyncJob> logger)
         {
             _apiService = apiService;
             _cardService = cardService;
             _rarityService = rarityService;
             _artistService = artistService;
             _playerClassService = playerClassService;
+            _cardSetService = cardSetService;
             _logger = logger;
         }
 
@@ -51,6 +53,10 @@ namespace HearthStoneApp.WorkerService
                             if (!string.IsNullOrEmpty(cardDto.PlayerClass))
                             {
                                 cardDto.PlayerClassId = await GetOrCreatePlayerClassIdAsync(cardDto.PlayerClass);
+                            } 
+                            if (!string.IsNullOrEmpty(cardDto.CardSet))
+                            {
+                                cardDto.CardSetId = await GetOrCreateCardSetIdAsync(cardDto.CardSet);
                             }
                             await _cardService.UpsertCardAsync(cardDto);
                         }
@@ -88,6 +94,15 @@ namespace HearthStoneApp.WorkerService
                 playerClass = await _playerClassService.CreatePlayerClassAsync(new PlayerClassDto { Name = playerClassName });
             }
             return playerClass.PlayerClassId;
+        }
+        private async Task<long?> GetOrCreateCardSetIdAsync(string cardSetName)
+        {
+            var cardSet = await _cardSetService.GetCardSetByNameAsync(cardSetName);
+            if (cardSet == null)
+            {
+                cardSet = await _cardSetService.CreateCardSetAsync(new CardSetDto { Name = cardSetName });
+            }
+            return cardSet.CardSetId;
         }
     }
 }

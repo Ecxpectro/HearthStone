@@ -43,11 +43,15 @@ public class Program
                 services.AddScoped<ICardService, CardService>();
                 services.AddScoped<IRarityService, RarityService>();
                 services.AddScoped<IArtistService, ArtistService>();
+                services.AddScoped<IPlayerClassService, PlayerClassService>();
+                services.AddScoped<ICardSetService, CardSetService>();
 
                 //repositories
                 services.AddScoped<ICardRepository, CardRepository>();
                 services.AddScoped<IRarityRepository, RarityRepository>();
                 services.AddScoped<IArtistRepository, ArtistRepository>();
+                services.AddScoped<IPlayerClassRepository, PlayerClassRepository>();
+                services.AddScoped<ICardSetRepository, CardSetRepository>();
 
                 //crons
                 services.AddScoped<ICardSyncJob, CardSyncJob>();
