@@ -8,14 +8,7 @@ namespace HearthStoneApp.Aplication.Profiles
     {
         public CardProfile()
         {
-            CreateMap<CardDto, Card>().ForMember(dest => dest.CardSet, opt => opt.Ignore()) 
-    .ForMember(dest => dest.Rarity, opt => opt.Ignore())
-    .ForMember(dest => dest.PlayerClass, opt => opt.Ignore())
-    .ForMember(dest => dest.Artist, opt => opt.Ignore());  
-            CreateMap<Card, CardDto>().ForMember(dest => dest.CardSet, opt => opt.Ignore()) 
-    .ForMember(dest => dest.Rarity, opt => opt.Ignore())
-    .ForMember(dest => dest.PlayerClass, opt => opt.Ignore())
-    .ForMember(dest => dest.Artist, opt => opt.Ignore());
+            CreateMap<CardDto, Card>().ReverseMap();
         }
     }
 }
