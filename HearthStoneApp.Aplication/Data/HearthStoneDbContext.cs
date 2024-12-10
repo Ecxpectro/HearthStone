@@ -1,7 +1,7 @@
 ﻿using HearthStoneApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace HearthStoneApp.WebApi.Data
+namespace HearthStoneApp.Aplication.Data
 {
     public class HearthStoneDbContext : DbContext
     {
@@ -9,6 +9,10 @@ namespace HearthStoneApp.WebApi.Data
             : base(options)
         {
         }
+        public DbSet<Artist> Artists { get; set; }
         public DbSet<Card> Cards { get; set; }
+        public DbSet<CardSet> CardSets { get; set; }
+        public DbSet<PlayerClass> PlayerClasses { get; set; }
+        public DbSet<Rarity> Rarities { get; set; }
     }
 }

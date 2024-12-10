@@ -1,5 +1,5 @@
 using dotenv.net;
-using HearthStoneApp.WebApi.Data;
+using HearthStoneApp.Aplication.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

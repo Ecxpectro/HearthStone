@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35521.163 d17.12
+VisualStudioVersion = 17.12.35521.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthStoneApp.Domain", "HearthStoneApp.Domain\HearthStoneApp.Domain.csproj", "{4A478D6F-D22D-45B0-B6DC-DED357B3583E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthStoneApp.WebApi", "HearthStoneApp.WebApi\HearthStoneApp.WebApi.csproj", "{D11F217A-40CF-4F21-9E12-B53A46953304}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthStoneApp.Aplication", "HearthStoneApp.Aplication\HearthStoneApp.Aplication.csproj", "{3930A351-675B-4B83-AE8E-99C7AC4336DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D11F217A-40CF-4F21-9E12-B53A46953304}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D11F217A-40CF-4F21-9E12-B53A46953304}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D11F217A-40CF-4F21-9E12-B53A46953304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3930A351-675B-4B83-AE8E-99C7AC4336DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3930A351-675B-4B83-AE8E-99C7AC4336DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3930A351-675B-4B83-AE8E-99C7AC4336DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3930A351-675B-4B83-AE8E-99C7AC4336DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

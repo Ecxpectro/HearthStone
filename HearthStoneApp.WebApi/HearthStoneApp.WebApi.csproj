@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HearthStoneApp.Aplication\HearthStoneApp.Aplication.csproj" />
     <ProjectReference Include="..\HearthStoneApp.Domain\HearthStoneApp.Domain.csproj" />
   </ItemGroup>
 
