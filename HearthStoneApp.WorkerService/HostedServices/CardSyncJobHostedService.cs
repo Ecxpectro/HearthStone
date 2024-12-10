@@ -18,7 +18,7 @@ namespace HearthStoneApp.WorkerService.HostedServices
             {
                 var jobService = scopeServiceFactory.ServiceProvider.GetRequiredService<ICardSyncJob>();
 
-                RecurringJob.AddOrUpdate(() => jobService.SyncCardsAsync(), Cron.Minutely);
+                RecurringJob.AddOrUpdate(() => jobService.SyncCardsAsync(), Cron.Hourly);
             }
             return Task.CompletedTask;
         }
