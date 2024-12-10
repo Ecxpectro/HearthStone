@@ -39,10 +39,15 @@ public class Program
                 services.AddAutoMapper(typeof(CardProfile).Assembly);
 
                 services.AddHttpClient<IHearthStoneApiService, HearthStoneApiService>();
+
                 //services
                 services.AddScoped<ICardService, CardService>();
+                services.AddScoped<IRarityService, RarityService>();
+
                 //repositories
                 services.AddScoped<ICardRepository, CardRepository>();
+                services.AddScoped<IRarityRepository, RarityRepository>();
+
                 //crons
                 services.AddScoped<ICardSyncJob, CardSyncJob>();
 

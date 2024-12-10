@@ -4,6 +4,7 @@ using HearthStoneApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HearthStoneApp.Infrastructure.Migrations
 {
     [DbContext(typeof(HearthStoneDbContext))]
-    partial class HearthStoneDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241210220317_AddCardCollections")]
+    partial class AddCardCollections
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -10,16 +10,17 @@ namespace HearthStoneApp.WorkerService
     {
         private readonly IHearthStoneApiService _apiService;
         private readonly ICardService _cardService;
+        private readonly IRarityService _rarityService;
 
-        public CardSyncJob(IHearthStoneApiService apiService, ICardService cardService)
+        public CardSyncJob(IHearthStoneApiService apiService, ICardService cardService, IRarityService rarityService)
         {
             _apiService = apiService;
             _cardService = cardService;
+            _rarityService = rarityService;
         }
 
         public async Task SyncCardsAsync()
         {
-
             try
             {
                 var jsonResponse = await _apiService.GetCardsAsync();
@@ -29,8 +30,13 @@ namespace HearthStoneApp.WorkerService
                     var cardDtos = JsonConvert.DeserializeObject<List<CardDto>>(jsonResponse);
                     if (cardDtos != null)
                     {
+                        RarityDto rarity = new RarityDto();
                         foreach (var cardDto in cardDtos)
                         {
+                            if (!string.IsNullOrEmpty(cardDto.Rarity))
+                            {
+                                cardDto.RarityId = await GetOrCreateRarityIdAsync(cardDto.Rarity);
+                            }
                             await _cardService.UpsertCardAsync(cardDto);
                         }
                     }
@@ -38,7 +44,17 @@ namespace HearthStoneApp.WorkerService
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"Error: {ex.Message}");
             }
+        }
+        private async Task<long> GetOrCreateRarityIdAsync(string rarityName)
+        {
+            var rarity = await _rarityService.GetRarityByNameAsync(rarityName);
+            if (rarity == null)
+            {
+                rarity = await _rarityService.CreateRarityAsync(new RarityDto { Name = rarityName });
+            }
+            return rarity.RarityId;
         }
     }
 }
