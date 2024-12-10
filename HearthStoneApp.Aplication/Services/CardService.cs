@@ -1,4 +1,5 @@
-﻿using HearthStoneApp.Aplication.Dtos;
+﻿using AutoMapper;
+using HearthStoneApp.Aplication.Dtos;
 using HearthStoneApp.Aplication.Repository.Interfaces;
 using HearthStoneApp.Aplication.Services.Interfaces;
 using HearthStoneApp.Domain.Entities;
@@ -8,27 +9,19 @@ namespace HearthStoneApp.Aplication.Services
     public class CardService : ICardService
     {
         private readonly ICardRepository _cardRepository;
+        private readonly IMapper _mapper;
 
-        public CardService(ICardRepository cardRepository)
+        public CardService(ICardRepository cardRepository, IMapper mapper)
         {
             _cardRepository = cardRepository;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<CardDto>> GetCardsAsync()
         {
             var cards = await _cardRepository.GetAllAsync();
-            return cards.Select(c => new CardDto
-            {
-                CardId = c.CardId,
-                Name = c.Name,
-                Type = c.Type,
-                Cost = c.Cost,
-                Attack = c.Attack,
-                Health = c.Health,
-                Text = c.Text,
-                Flavor = c.Flavor,
-                ImgUrl = c.ImgUrl
-            });
+            var result = _mapper.Map<IEnumerable<CardDto>>(cards);
+            return result;
         }
 
         public async Task<CardDto> GetCardAsync(long id)
@@ -36,33 +29,12 @@ namespace HearthStoneApp.Aplication.Services
             var card = await _cardRepository.GetByIdAsync(id);
             if (card == null) return null;
 
-            return new CardDto
-            {
-                CardId = card.CardId,
-                Name = card.Name,
-                Type = card.Type,
-                Cost = card.Cost,
-                Attack = card.Attack,
-                Health = card.Health,
-                Text = card.Text,
-                Flavor = card.Flavor,
-                ImgUrl = card.ImgUrl
-            };
+            return _mapper.Map<CardDto>(card);
         }
 
         public async Task<CardDto> CreateCardAsync(CardDto cardDto)
         {
-            var card = new Card
-            {
-                Name = cardDto.Name,
-                Type = cardDto.Type,
-                Cost = cardDto.Cost,
-                Attack = cardDto.Attack,
-                Health = cardDto.Health,
-                Text = cardDto.Text,
-                Flavor = cardDto.Flavor,
-                ImgUrl = cardDto.ImgUrl
-            };
+            var card = _mapper.Map<Card>(cardDto);
 
             await _cardRepository.AddAsync(card);
             return cardDto; 
@@ -70,7 +42,7 @@ namespace HearthStoneApp.Aplication.Services
 
         public async Task<CardDto> UpdateCardAsync(CardDto cardDto)
         {
-            var card = await _cardRepository.GetByIdAsync(cardDto.CardId);
+            var card = await _cardRepository.GetByIdAsync(cardDto.Id);
             if (card == null) return null;
 
             card.Name = cardDto.Name;
@@ -93,6 +65,15 @@ namespace HearthStoneApp.Aplication.Services
 
             await _cardRepository.DeleteAsync(card);
             return true;
+        }
+
+        public async Task<CardDto> UpsertCardAsync(CardDto cardDto)
+        {
+            var card = _mapper.Map<Card>(cardDto);
+
+            await _cardRepository.UpsertCardAsync(card);
+
+            return cardDto;
         }
     }
 }

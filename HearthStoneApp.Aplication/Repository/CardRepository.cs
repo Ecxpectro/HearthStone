@@ -1,6 +1,6 @@
-﻿using HearthStoneApp.Aplication.Data;
-using HearthStoneApp.Aplication.Repository.Interfaces;
+﻿using HearthStoneApp.Aplication.Repository.Interfaces;
 using HearthStoneApp.Domain.Entities;
+using HearthStoneApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace HearthStoneApp.Aplication.Repository
@@ -21,7 +21,7 @@ namespace HearthStoneApp.Aplication.Repository
 
         public async Task<Card> GetByIdAsync(long id)
         {
-            return await _context.Cards.FirstOrDefaultAsync(c => c.CardId == id);
+            return await _context.Cards.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task AddAsync(Card card)
@@ -40,6 +40,22 @@ namespace HearthStoneApp.Aplication.Repository
         {
             _context.Cards.Remove(card);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> UpsertCardAsync(Card card)
+        {
+            var existingCard = await _context.Cards.FirstOrDefaultAsync(x => x.Name == card.Name);
+            if (existingCard == null)
+            {
+                _context.Cards.Add(card);
+            }
+            else
+            {
+                card.Id = existingCard.Id;
+                _context.Entry(existingCard).CurrentValues.SetValues(card);
+            }
+
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

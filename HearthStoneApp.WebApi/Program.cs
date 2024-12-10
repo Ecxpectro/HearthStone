@@ -1,10 +1,11 @@
 using dotenv.net;
-using HearthStoneApp.Aplication.Data;
 using HearthStoneApp.Aplication.Repository.Interfaces;
 using HearthStoneApp.Aplication.Repository;
 using Microsoft.EntityFrameworkCore;
 using HearthStoneApp.Aplication.Services.Interfaces;
 using HearthStoneApp.Aplication.Services;
+using HearthStoneApp.Infrastructure.Data;
+using HearthStoneApp.Aplication.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 DotEnv.Load();
@@ -20,6 +21,7 @@ builder.Services.AddDbContext<HearthStoneDbContext>(opt =>
                          sqlOptions.EnableRetryOnFailure();
                      });
 });
+builder.Services.AddAutoMapper(typeof(CardProfile).Assembly);
 
 builder.Services.AddScoped<ICardRepository, CardRepository>();
 

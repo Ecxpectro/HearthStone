@@ -38,13 +38,13 @@ namespace HearthStoneApp.WebApi.Controllers
                 return BadRequest();
 
             var createdCard = await _cardService.CreateCardAsync(cardDto);
-            return CreatedAtAction(nameof(GetCard), new { id = createdCard.CardId }, createdCard);
+            return CreatedAtAction(nameof(GetCard), new { id = createdCard.Id }, createdCard);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCard(long id, [FromBody] CardDto cardDto)
         {
-            if (id != cardDto.CardId)
+            if (id != cardDto.Id)
                 return BadRequest();
 
             var updatedCard = await _cardService.UpdateCardAsync(cardDto);

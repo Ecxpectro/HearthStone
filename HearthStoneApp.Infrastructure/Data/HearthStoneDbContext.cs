@@ -1,7 +1,7 @@
 ﻿using HearthStoneApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace HearthStoneApp.Aplication.Data
+namespace HearthStoneApp.Infrastructure.Data
 {
     public class HearthStoneDbContext : DbContext
     {

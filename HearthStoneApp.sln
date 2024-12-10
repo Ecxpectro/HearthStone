@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthStoneApp.WebApi", "He
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthStoneApp.Aplication", "HearthStoneApp.Aplication\HearthStoneApp.Aplication.csproj", "{3930A351-675B-4B83-AE8E-99C7AC4336DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthStoneApp.Infrastructure", "HearthStoneApp.Infrastructure\HearthStoneApp.Infrastructure.csproj", "{C9D3E3B2-9713-4E7B-A1D7-E7BDF5EA6980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthStoneApp.WorkerService", "HearthStoneApp.WorkerService\HearthStoneApp.WorkerService.csproj", "{675F59EF-5F9B-4E59-8EC9-801BB302356D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{3930A351-675B-4B83-AE8E-99C7AC4336DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3930A351-675B-4B83-AE8E-99C7AC4336DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3930A351-675B-4B83-AE8E-99C7AC4336DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D3E3B2-9713-4E7B-A1D7-E7BDF5EA6980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D3E3B2-9713-4E7B-A1D7-E7BDF5EA6980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D3E3B2-9713-4E7B-A1D7-E7BDF5EA6980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D3E3B2-9713-4E7B-A1D7-E7BDF5EA6980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{675F59EF-5F9B-4E59-8EC9-801BB302356D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{675F59EF-5F9B-4E59-8EC9-801BB302356D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{675F59EF-5F9B-4E59-8EC9-801BB302356D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{675F59EF-5F9B-4E59-8EC9-801BB302356D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

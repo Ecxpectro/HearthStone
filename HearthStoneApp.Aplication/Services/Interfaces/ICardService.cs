@@ -9,5 +9,6 @@ namespace HearthStoneApp.Aplication.Services.Interfaces
         Task<CardDto> CreateCardAsync(CardDto cardDto);
         Task<CardDto> UpdateCardAsync(CardDto cardDto);
         Task<bool> DeleteCardAsync(long id);
+        Task<CardDto> UpsertCardAsync(CardDto cardDto);
     }
 }
