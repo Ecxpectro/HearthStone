@@ -1,6 +1,10 @@
 using dotenv.net;
 using HearthStoneApp.Aplication.Data;
+using HearthStoneApp.Aplication.Repository.Interfaces;
+using HearthStoneApp.Aplication.Repository;
 using Microsoft.EntityFrameworkCore;
+using HearthStoneApp.Aplication.Services.Interfaces;
+using HearthStoneApp.Aplication.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 DotEnv.Load();
@@ -16,6 +20,11 @@ builder.Services.AddDbContext<HearthStoneDbContext>(opt =>
                          sqlOptions.EnableRetryOnFailure();
                      });
 });
+
+builder.Services.AddScoped<ICardRepository, CardRepository>();
+
+builder.Services.AddScoped<ICardService, CardService>();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
