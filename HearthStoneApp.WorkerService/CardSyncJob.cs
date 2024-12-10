@@ -12,13 +12,17 @@ namespace HearthStoneApp.WorkerService
         private readonly ICardService _cardService;
         private readonly IRarityService _rarityService;
         private readonly IArtistService _artistService;
+        private readonly IPlayerClassService _playerClassService;
+        private readonly ILogger<CardSyncJob> _logger;
 
-        public CardSyncJob(IHearthStoneApiService apiService, ICardService cardService, IRarityService rarityService, IArtistService artistService)
+        public CardSyncJob(IHearthStoneApiService apiService, ICardService cardService, IRarityService rarityService, IArtistService artistService, IPlayerClassService playerClassService, ILogger<CardSyncJob> logger)
         {
             _apiService = apiService;
             _cardService = cardService;
             _rarityService = rarityService;
             _artistService = artistService;
+            _playerClassService = playerClassService;
+            _logger = logger;
         }
 
         public async Task SyncCardsAsync()
@@ -44,6 +48,10 @@ namespace HearthStoneApp.WorkerService
                             {
                                 cardDto.ArtistId = await GetOrCreateArtistIdAsync(cardDto.Artist);
                             }
+                            if (!string.IsNullOrEmpty(cardDto.PlayerClass))
+                            {
+                                cardDto.PlayerClassId = await GetOrCreatePlayerClassIdAsync(cardDto.PlayerClass);
+                            }
                             await _cardService.UpsertCardAsync(cardDto);
                         }
                     }
@@ -51,7 +59,7 @@ namespace HearthStoneApp.WorkerService
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                _logger.LogError(ex, "Error while syncing cards.");
             }
         }
         private async Task<long> GetOrCreateRarityIdAsync(string rarityName)
@@ -71,6 +79,15 @@ namespace HearthStoneApp.WorkerService
                 artist = await _artistService.CreateArtistAsync(new ArtistDto { Name = artistName });
             }
             return artist.ArtistId;
+        }
+        private async Task<long?> GetOrCreatePlayerClassIdAsync(string playerClassName)
+        {
+            var playerClass = await _playerClassService.GetPlayerClassByNameAsync(playerClassName);
+            if (playerClass == null)
+            {
+                playerClass = await _playerClassService.CreatePlayerClassAsync(new PlayerClassDto { Name = playerClassName });
+            }
+            return playerClass.PlayerClassId;
         }
     }
 }
