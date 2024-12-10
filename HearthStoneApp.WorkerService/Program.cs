@@ -35,18 +35,19 @@ public class Program
                         .UseSqlServerStorage(connectionString));
 
                 services.AddHangfireServer();
-
-                services.AddAutoMapper(typeof(CardProfile).Assembly);
+                services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
                 services.AddHttpClient<IHearthStoneApiService, HearthStoneApiService>();
 
                 //services
                 services.AddScoped<ICardService, CardService>();
                 services.AddScoped<IRarityService, RarityService>();
+                services.AddScoped<IArtistService, ArtistService>();
 
                 //repositories
                 services.AddScoped<ICardRepository, CardRepository>();
                 services.AddScoped<IRarityRepository, RarityRepository>();
+                services.AddScoped<IArtistRepository, ArtistRepository>();
 
                 //crons
                 services.AddScoped<ICardSyncJob, CardSyncJob>();

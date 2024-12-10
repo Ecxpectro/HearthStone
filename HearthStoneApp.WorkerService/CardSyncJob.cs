@@ -11,12 +11,14 @@ namespace HearthStoneApp.WorkerService
         private readonly IHearthStoneApiService _apiService;
         private readonly ICardService _cardService;
         private readonly IRarityService _rarityService;
+        private readonly IArtistService _artistService;
 
-        public CardSyncJob(IHearthStoneApiService apiService, ICardService cardService, IRarityService rarityService)
+        public CardSyncJob(IHearthStoneApiService apiService, ICardService cardService, IRarityService rarityService, IArtistService artistService)
         {
             _apiService = apiService;
             _cardService = cardService;
             _rarityService = rarityService;
+            _artistService = artistService;
         }
 
         public async Task SyncCardsAsync()
@@ -37,6 +39,11 @@ namespace HearthStoneApp.WorkerService
                             {
                                 cardDto.RarityId = await GetOrCreateRarityIdAsync(cardDto.Rarity);
                             }
+
+                            if (!string.IsNullOrEmpty(cardDto.Artist))
+                            {
+                                cardDto.ArtistId = await GetOrCreateArtistIdAsync(cardDto.Artist);
+                            }
                             await _cardService.UpsertCardAsync(cardDto);
                         }
                     }
@@ -55,6 +62,15 @@ namespace HearthStoneApp.WorkerService
                 rarity = await _rarityService.CreateRarityAsync(new RarityDto { Name = rarityName });
             }
             return rarity.RarityId;
+        }
+        private async Task<long> GetOrCreateArtistIdAsync(string artistName)
+        {
+            var artist = await _artistService.GetArtistByNameAsync(artistName);
+            if (artist == null)
+            {
+                artist = await _artistService.CreateArtistAsync(new ArtistDto { Name = artistName });
+            }
+            return artist.ArtistId;
         }
     }
 }
