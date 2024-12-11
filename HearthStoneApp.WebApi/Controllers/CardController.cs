@@ -1,4 +1,5 @@
 ﻿using HearthStoneApp.Aplication.Dtos;
+using HearthStoneApp.Aplication.Dtos.Filters;
 using HearthStoneApp.Aplication.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -62,6 +63,12 @@ namespace HearthStoneApp.WebApi.Controllers
                 return NotFound();
 
             return NoContent();
+        }
+        [HttpGet("cards")]
+        public async Task<IActionResult> GetCards([FromQuery] CardFilterDto filter)
+        {
+            var result = await _cardService.GetFilteredCardsAsync(filter);
+            return Ok(result);
         }
     }
 }

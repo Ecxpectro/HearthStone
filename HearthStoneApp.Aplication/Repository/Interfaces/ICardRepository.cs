@@ -10,5 +10,6 @@ namespace HearthStoneApp.Aplication.Repository.Interfaces
         Task UpdateAsync(Card card);
         Task DeleteAsync(Card card);
         Task<bool> UpsertCardAsync(Card card);
+        IQueryable<Card> GetAllCards();
     }
 }

@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using HearthStoneApp.Aplication.Common;
 using HearthStoneApp.Aplication.Dtos;
+using HearthStoneApp.Aplication.Dtos.Filters;
 using HearthStoneApp.Aplication.Repository.Interfaces;
 using HearthStoneApp.Aplication.Services.Interfaces;
 using HearthStoneApp.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HearthStoneApp.Aplication.Services
 {
@@ -74,6 +77,40 @@ namespace HearthStoneApp.Aplication.Services
             await _cardRepository.UpsertCardAsync(card);
 
             return cardDto;
+        }
+        public async Task<PaginatedResult<CardDto>> GetFilteredCardsAsync(CardFilterDto filter)
+        {
+            var query = _cardRepository.GetAllCards();
+
+            if (!string.IsNullOrEmpty(filter.SearchText))
+            {
+                var searchText = filter.SearchText.ToLower();
+
+                query = query.Where(c =>
+                    c.Name.ToLower().Contains(searchText) ||
+                    c.Artist.Name.ToLower().Contains(searchText) ||
+                    c.CardSet.Name.ToLower().Contains(searchText) ||
+                    c.Rarity.Name.ToLower().Contains(searchText) ||
+                    c.PlayerClass.Name.ToLower().Contains(searchText)
+                );
+            }
+
+            var totalRecords = await query.CountAsync();
+
+            var cards = await query
+                .Skip((filter.PageNumber - 1) * filter.PageSize)
+                .Take(filter.PageSize)
+                .ToListAsync();
+
+            var cardDtos = _mapper.Map<List<CardDto>>(cards);
+
+            return new PaginatedResult<CardDto>
+            {
+                Items = cardDtos,
+                TotalRecords = totalRecords,
+                PageNumber = filter.PageNumber,
+                PageSize = filter.PageSize
+            };
         }
     }
 }

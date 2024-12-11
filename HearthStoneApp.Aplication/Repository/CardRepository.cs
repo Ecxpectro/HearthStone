@@ -16,12 +16,12 @@ namespace HearthStoneApp.Aplication.Repository
 
         public async Task<IEnumerable<Card>> GetAllAsync()
         {
-            return await _context.Cards.ToListAsync();
+            return await _context.Cards.AsNoTracking().ToListAsync();
         }
 
         public async Task<Card> GetByIdAsync(long id)
         {
-            return await _context.Cards.FirstOrDefaultAsync(c => c.Id == id);
+            return await _context.Cards.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task AddAsync(Card card)
@@ -56,6 +56,16 @@ namespace HearthStoneApp.Aplication.Repository
             }
 
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public IQueryable<Card> GetAllCards()
+        {
+            return _context.Cards
+                .AsNoTracking()
+             .Include(c => c.Rarity)
+             .Include(c => c.PlayerClass)
+             .Include(c => c.Artist)
+             .Include(c => c.CardSet);
         }
     }
 }

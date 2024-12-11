@@ -38,7 +38,6 @@ namespace HearthStoneApp.WorkerService
                     var cardDtos = JsonConvert.DeserializeObject<List<CardDto>>(jsonResponse);
                     if (cardDtos != null)
                     {
-                        RarityDto rarity = new RarityDto();
                         foreach (var cardDto in cardDtos)
                         {
                             if (!string.IsNullOrEmpty(cardDto.Rarity))

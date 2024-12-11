@@ -19,5 +19,10 @@
         public string? PlayerClass { get; set; }
         public string? Rarity { get; set; }
         public string? CardSet { get; set; }
+
+        public ArtistDto ArtistDto { get; set; }
+        public CardSetDto CardSetDto { get; set; }
+        public PlayerClassDto PlayerClassDto { get; set; }
+        public RarityDto RarityDto { get; set; }
     }
 }
