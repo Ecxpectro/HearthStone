@@ -64,7 +64,7 @@ namespace HearthStoneApp.WebApi.Controllers
 
             return NoContent();
         }
-        [HttpGet("cards")]
+        [HttpGet("GetCardsByFilters")]
         public async Task<IActionResult> GetCards([FromQuery] CardFilterDto filter)
         {
             var result = await _cardService.GetFilteredCardsAsync(filter);
