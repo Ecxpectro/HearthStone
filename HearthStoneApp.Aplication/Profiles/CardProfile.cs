@@ -11,7 +11,8 @@ namespace HearthStoneApp.Aplication.Profiles
             CreateMap<CardDto, Card>().ForMember(dest => dest.CardSet, opt => opt.Ignore())
     .ForMember(dest => dest.Rarity, opt => opt.Ignore())
     .ForMember(dest => dest.PlayerClass, opt => opt.Ignore())
-    .ForMember(dest => dest.Artist, opt => opt.Ignore());
+    .ForMember(dest => dest.Artist, opt => opt.Ignore())
+    .ForMember(dest => dest.ImgUrl, opt => opt.MapFrom(src => src.Img));
             CreateMap<Card, CardDto>().ForMember(dest => dest.CardSetDto, opt => opt.MapFrom(src => src.CardSet))
     .ForMember(dest => dest.RarityDto, opt => opt.MapFrom(src => src.Rarity))
     .ForMember(dest => dest.PlayerClassDto, opt => opt.MapFrom(src => src.PlayerClass))
@@ -19,7 +20,8 @@ namespace HearthStoneApp.Aplication.Profiles
     .ForMember(dest => dest.CardSet, opt => opt.Ignore())
     .ForMember(dest => dest.Rarity, opt => opt.Ignore())
     .ForMember(dest => dest.PlayerClass, opt => opt.Ignore())
-    .ForMember(dest => dest.Artist, opt => opt.Ignore());
+    .ForMember(dest => dest.Artist, opt => opt.Ignore())
+    .ForMember(dest => dest.Img, opt => opt.MapFrom(src => src.ImgUrl));
         }
     }
 }

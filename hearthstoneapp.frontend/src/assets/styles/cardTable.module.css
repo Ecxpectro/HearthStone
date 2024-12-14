@@ -1,0 +1,144 @@
+.MainPhoto {
+	width: 100%;
+	height: 340px;
+	background: url(../images/HearthStone-MainPhoto.jpeg) lightgray 50% / cover no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-position-y: top;
+}
+.mainContent {
+	padding: 24px;
+}
+
+table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	border-radius: 8px;
+	max-width: 1380px;
+	width: 100%;
+	overflow:hidden;
+	
+}
+@media (min-height: 1080px) {
+	table {
+		height: 690px
+	}
+}
+@media (max-height: 1079px) {
+	table {
+		height: 377px
+	}
+}
+
+	th {
+		text-align: center;
+		background: transparent;
+	}
+
+thead {
+	table-layout: fixed;
+	color: #FFF;
+	font-family: Inter;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	background: rgba(63, 37, 3, 0.50);
+	position: relative;
+	height: 65px;
+}
+
+	tbody {
+		background: #D2BA81;
+		position: relative;
+	}
+
+	th, td {
+		padding: 16px 0px;
+		text-align: center;
+	}
+
+	td {
+		color: #3A3A3A;
+	}
+
+	.filter {
+		display: flex;
+		align-items: center;
+		background-color: #74191a;
+		padding: 6px;
+		border-radius: 8px;
+		width: 100%;
+		max-width: 450px;
+	}
+
+	.filterInput {
+		flex: 1;
+		background-color: transparent;
+		border: 0 !important;
+		color: #FFF;
+		font-family: Inter;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: normal;
+	}
+
+	.filterButton {
+		display: flex;
+		width: 120px;
+		padding: 6px 16px;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		flex-shrink: 0;
+		border-radius: 8px;
+		background: rgba(173, 28, 28, 0.75);
+		border: 0;
+		font-family: Inter;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: normal;
+		color: #FFF;
+	}
+
+	.filter input::placeholder {
+		color: #FFF;
+		border: 0;
+	}
+
+	.filter input:focus {
+		outline: none;
+		border: none;
+	}
+
+	.filterContainer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 16px;
+	}
+
+	.svgSearchIcon {
+		margin: 0px 4px 0px 8px;
+		color: #fff;
+	}
+
+	.title {
+		color: #3F2503;
+		font-family: Inter;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: normal;
+		margin: 0;
+	}
+
+.columnFlavor {
+	width: 300px;
+}
+.cost {
+	width: 90px;
+}

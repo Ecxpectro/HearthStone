@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthStoneApp.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthStoneApp.WorkerService", "HearthStoneApp.WorkerService\HearthStoneApp.WorkerService.csproj", "{675F59EF-5F9B-4E59-8EC9-801BB302356D}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "hearthstoneapp.frontend", "HearthStoneApp.Frontend\hearthstoneapp.frontend.esproj", "{F62D15BE-4D24-44BB-8B70-ABF746B4609A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{675F59EF-5F9B-4E59-8EC9-801BB302356D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{675F59EF-5F9B-4E59-8EC9-801BB302356D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{675F59EF-5F9B-4E59-8EC9-801BB302356D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F62D15BE-4D24-44BB-8B70-ABF746B4609A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F62D15BE-4D24-44BB-8B70-ABF746B4609A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F62D15BE-4D24-44BB-8B70-ABF746B4609A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F62D15BE-4D24-44BB-8B70-ABF746B4609A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F62D15BE-4D24-44BB-8B70-ABF746B4609A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F62D15BE-4D24-44BB-8B70-ABF746B4609A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

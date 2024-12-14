@@ -1,0 +1,56 @@
+.pagination {
+	margin-top: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+.previousButton {
+	display: flex;
+	height: 42px;
+	width: 84px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 8px;
+	background: #A01C1C;
+	color: #fff;
+	border: 0;
+}
+
+	.previousButton:disabled {
+		background: #D2BA81;
+	}
+
+.nextButton {
+	display: flex;
+	height: 42px;
+	width: 84px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 8px;
+	background: #A01C1C;
+	color: #fff;
+	border: 0;
+}
+
+	.nextButton:disabled {
+		background: #D2BA81;
+	}
+
+.active .numberFilterButton {
+	background-color: #A01C1C;
+}
+
+.numberFilterButton {
+	height: 42px;
+	width: 42px;
+	border-radius: 8px;
+	background: #74191a;
+	border: 0;
+	color: #fff;
+	font-family: Inter;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}

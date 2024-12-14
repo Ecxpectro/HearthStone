@@ -60,7 +60,7 @@ namespace HearthStoneApp.Aplication.Repository
 
         public IQueryable<Card> GetAllCards()
         {
-            return _context.Cards
+            return _context.Cards.OrderByDescending(x => x.ImgUrl)
                 .AsNoTracking()
              .Include(c => c.Rarity)
              .Include(c => c.PlayerClass)

@@ -1,0 +1,18 @@
+.columnName {
+	overflow: hidden;
+	color: #3A3A3A;
+	text-overflow: ellipsis;
+	font-family: Inter;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.columnFlavor {
+	width: 300px;
+}
+
+.cost {
+	width: 90px;
+}

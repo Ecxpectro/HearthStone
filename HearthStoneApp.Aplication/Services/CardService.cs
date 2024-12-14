@@ -55,7 +55,7 @@ namespace HearthStoneApp.Aplication.Services
             card.Health = cardDto.Health;
             card.Text = cardDto.Text;
             card.Flavor = cardDto.Flavor;
-            card.ImgUrl = cardDto.ImgUrl;
+            card.ImgUrl = cardDto.Img;
 
             await _cardRepository.UpdateAsync(card);
             return cardDto;
