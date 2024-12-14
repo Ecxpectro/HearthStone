@@ -3,6 +3,9 @@
 ## Project Overview
 HearthStoneApp is a .NET 8-based solution designed to demonstrate a clean architecture implementation combined with Domain-Driven Design (DDD) principles. The solution includes both a WebAPI and a Worker Service, utilizing EF Core for data persistence and Hangfire for background job processing.
 
+![image](https://github.com/user-attachments/assets/4ae21d80-8423-46b8-b8be-e99834e4fb4f)
+
+
 ## Table of Contents
 1. [Project Structure](#project-structure)
 2. [Setup Instructions](#setup-instructions)
